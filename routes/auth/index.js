@@ -1,10 +1,10 @@
-const express = require('express');
-const login = require('./login');
-const registration = require('./registration');
+const express = require('express')
+const login = require('./login')
+const registration = require('./registration')
 
-const router = express.Router();
+const router = express.Router()
 
-router.use('/login', login);
-router.use('/registration', registration);
+router.use('/login', login)
+router.use('/registration', registration)
 
-module.exports = router;
+module.exports = router
