@@ -9,7 +9,7 @@ const expressWinston = require('express-winston')
 const routes = require('./routes')
 
 // Connect to MongoDB database
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 	const app = express()
 
 	app.use(cors())
