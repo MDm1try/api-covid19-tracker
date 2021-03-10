@@ -29,8 +29,8 @@ const create = async (req, res) => {
         if (user) {
             return res.status(400).send({error: 'Email is already exist'})
         }
-	
-        const cryptPassword = await bcrypt.hash(password, 10)
+        const salt = process.env.TOKEN_SECRET
+        const cryptPassword = await bcrypt.hash(password, salt)
         const newUser = await Users({
             fistName,
             lastName,
