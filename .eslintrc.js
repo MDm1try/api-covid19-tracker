@@ -17,6 +17,7 @@ module.exports = {
         "semi": [
             "error",
             "never"
-        ]
+        ],
+        "object-curly-spacing": ["error", "always"]
   }
 };
