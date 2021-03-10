@@ -1,25 +1,21 @@
 const inputRegisterUser = (data) => {
-    const errors = {}
+    let error = ''
 
     if (!data.fistName) {
-        errors.fistName = 'is required'
-    }
-    if (!data.lastName) {
-        errors.lastName = 'is required'
-    } 
-    if (!data.email) {
-        errors.email = 'is required'
-    }
-    if (!data.dob) {
-        errors.dob = 'is required'
-    }
-    if (!data.password) {
-        errors.password = 'is required'
+        error = 'fistName is required'
+    } else if (!data.lastName) {
+        error = 'lastName is required'
+    }  else if (!data.email) {
+        error = 'email is required'
+    } else if (!data.dob) {
+        error = 'dob is required'
+    } else if (!data.password) {
+        error = 'password is required'
     }
 
     return {
-        isValid: Object.keys(errors).length === 0,
-        errors
+        isValid: error.length === 0,
+        error
     }
 }
 

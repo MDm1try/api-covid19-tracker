@@ -14,9 +14,9 @@ const create = async (req, res) => {
     } = req.body
 
     try {
-        const { errors, isValid } = inputRegisterUser(req.body)
+        const { error, isValid } = inputRegisterUser(req.body)
         if (!isValid) {
-            return res.status(400).send({ errors })
+            return res.status(400).send({ error })
         }
         
         const user = await Users.findOne({ email })
