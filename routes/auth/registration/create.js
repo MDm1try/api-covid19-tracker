@@ -39,7 +39,7 @@ const create = async (req, res) => {
 
         newUser = await newUser.save()
         const payload = { _id: newUser._id }
-        const token = generateAccessToken({ payload }, null)
+        const token = generateAccessToken({ payload }, '100d')
         const invitationUrl = `${process.env.PORT.API_URL}/api/v1/auth/invite/${token}`
         await sendInvitation(firstName, email, invitationUrl)
         return res.status(200).send({ success: true })
