@@ -1,8 +1,8 @@
 const inputRegisterUser = (data) => {
     let error = ''
 
-    if (!data.fistName) {
-        error = 'fistName is required'
+    if (!data.firstName) {
+        error = 'firstName is required'
     } else if (!data.lastName) {
         error = 'lastName is required'
     }  else if (!data.email) {

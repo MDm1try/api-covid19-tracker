@@ -13,7 +13,7 @@ const create = async (req, res) => {
             return res.status(400).send({ error })
         }
         const {
-            fistName,
+            firstName,
             lastName,
             email,
             dob,
@@ -28,9 +28,9 @@ const create = async (req, res) => {
         const salt = process.env.TOKEN_SECRET
         const cryptPassword = await bcrypt.hash(password, salt)
         let newUser = new Users({
-            fistName,
+            firstName,
             lastName,
-            email,
+            email: email.toLowerCase(),
             dob,
             password: cryptPassword,
             type: USER_TYPES.CUSTOMER,
@@ -41,7 +41,7 @@ const create = async (req, res) => {
         const payload = { _id: newUser._id }
         const token = generateAccessToken({ payload }, null)
         const invitationUrl = `${process.env.PORT.API_URL}/api/v1/auth/invite/${token}`
-        await sendInvitation(fistName, email, invitationUrl)
+        await sendInvitation(firstName, email, invitationUrl)
         return res.status(200).send({ success: true })
     } catch(err) {
         return res.status(500).send({ error: err.message })
