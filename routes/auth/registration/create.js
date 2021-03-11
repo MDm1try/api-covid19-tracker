@@ -1,23 +1,25 @@
 const bcrypt = require('bcrypt')
 
 const Users = require('../../../models/Users')
-const sendInvitation = require('../../../mail/sendEmail')
+const sendInvitation = require('../../../mail/sendInvitation')
 const inputRegisterUser = require('../../../validation/inputRegisterUser')
+const { USER_TYPES } = require('../../../utils/constants')
+const { generateAccessToken } = require('../../../utils/auth')
 
 const create = async (req, res) => {
-    const {
-        fistName,
-        lastName,
-        email,
-        dob,
-        password
-    } = req.body
-
     try {
         const { error, isValid } = inputRegisterUser(req.body)
         if (!isValid) {
             return res.status(400).send({ error })
         }
+        const {
+            fistName,
+            lastName,
+            email,
+            dob,
+            password,
+            confirmLicense
+        } = req.body
         
         const user = await Users.findOne({ email })
         if (user) {
@@ -25,17 +27,21 @@ const create = async (req, res) => {
         }
         const salt = process.env.TOKEN_SECRET
         const cryptPassword = await bcrypt.hash(password, salt)
-        const newUser = new Users({
+        let newUser = new Users({
             fistName,
             lastName,
             email,
             dob,
-            password: cryptPassword
+            password: cryptPassword,
+            type: USER_TYPES.CUSTOMER,
+            confirmLicense
         })
 
-        await newUser.save()
-
-        await sendInvitation(fistName, email)
+        newUser = await newUser.save()
+        const payload = { _id: newUser._id }
+        const token = generateAccessToken({ payload }, null)
+        const invitationUrl = `${process.env.PORT.API_URL}/api/v1/auth/invite/${token}`
+        await sendInvitation(fistName, email, invitationUrl)
         return res.status(200).send({ success: true })
     } catch(err) {
         return res.status(500).send({ error: err.message })

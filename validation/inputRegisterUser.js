@@ -11,6 +11,8 @@ const inputRegisterUser = (data) => {
         error = 'dob is required'
     } else if (!data.password) {
         error = 'password is required'
+    } else if (!data.confirmLicense) {
+        error = 'it is required to confirm the license'
     }
 
     return {

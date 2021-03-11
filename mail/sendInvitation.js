@@ -6,7 +6,7 @@ const sendInvitation = async(email, name, url) => {
         from: '"Example Team" <from@example.com>',
         to: email,
         subject: 'Invitation',
-        text: `Hi ${name}, it’s our first message sent with Nodemailer`
+        text: `Hi ${name},\nPlease confirm your invitation by this URL: ${url}`
     }
 
     await sendEmail(options)

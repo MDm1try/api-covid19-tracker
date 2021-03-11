@@ -8,9 +8,12 @@ const schema = mongoose.Schema(
         dob: { type: String, required: true },
         password: { type: String, required: true },
         confirmLicense: {
-            type: String,
-            default: false,
+            type: Boolean,
+            required: true,
+            default: true,
         },
+        accepted: { type: Boolean, required: true, default: false },
+        type: { type: String, required: true },
     },
     {
         timestamps: true,
