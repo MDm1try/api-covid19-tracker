@@ -40,7 +40,7 @@ const create = async (req, res) => {
         newUser = await newUser.save()
         const payload = { _id: newUser._id }
         const token = generateAccessToken({ payload }, '100d')
-        const invitationUrl = `${process.env.PORT.API_URL}/api/v1/auth/invite/${token}`
+        const invitationUrl = `${process.env.API_URL}/api/v1/auth/invite/${token}`
         await sendInvitation(email, firstName, invitationUrl)
         return res.status(200).send({ success: true })
     } catch(err) {
@@ -48,4 +48,4 @@ const create = async (req, res) => {
     }
 }
 
-module.exports = create
+module.es = create
