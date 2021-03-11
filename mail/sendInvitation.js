@@ -1,4 +1,4 @@
-const sendEmail = require('./sendEmail')
+const nodemailer = require('./nodemailer')
 
 
 const sendInvitation = async(email, name, url) => {
@@ -9,7 +9,7 @@ const sendInvitation = async(email, name, url) => {
         text: `Hi ${name},\nPlease confirm your invitation by this URL: ${url}`
     }
 
-    await sendEmail(options)
+    await nodemailer.sendMail(options)
 }
 
 module.exports = sendInvitation
