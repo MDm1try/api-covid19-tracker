@@ -8,6 +8,7 @@ const { generateAccessToken } = require('../../../utils/auth')
 
 const create = async (req, res) => {
     try {
+        console.log(req.body)
         const { error, isValid } = inputRegisterUser(req.body)
         if (!isValid) {
             return res.status(400).send({ error })
