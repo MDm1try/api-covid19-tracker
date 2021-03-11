@@ -25,8 +25,7 @@ const create = async (req, res) => {
         if (user) {
             return res.status(400).send({ error: 'Email is already exist' })
         }
-        const salt = process.env.TOKEN_SECRET
-        console.log({ password, salt })
+        const salt = await bcrypt.genSalt(10)
         const cryptPassword = await bcrypt.hash(password, salt)
         let newUser = new Users({
             firstName,
