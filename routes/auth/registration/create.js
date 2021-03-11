@@ -8,7 +8,6 @@ const { generateAccessToken } = require('../../../utils/auth')
 
 const create = async (req, res) => {
     try {
-        console.log(req.body)
         const { error, isValid } = inputRegisterUser(req.body)
         if (!isValid) {
             return res.status(400).send({ error })
@@ -22,11 +21,12 @@ const create = async (req, res) => {
             confirmLicense
         } = req.body
         
-        const user = await Users.findOne({ email })
+        const user = await Users.findOne({ email: email.toLowerCase() })
         if (user) {
             return res.status(400).send({ error: 'Email is already exist' })
         }
         const salt = process.env.TOKEN_SECRET
+        console.log({ password, salt })
         const cryptPassword = await bcrypt.hash(password, salt)
         let newUser = new Users({
             firstName,
