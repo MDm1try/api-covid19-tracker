@@ -1,3 +1,5 @@
+const validator = require('validator')
+
 const inputRegisterUser = (data) => {
     let error = ''
 
@@ -5,7 +7,7 @@ const inputRegisterUser = (data) => {
         error = 'firstName is required'
     } else if (!data.lastName) {
         error = 'lastName is required'
-    }  else if (!data.email) {
+    }  else if (!validator.isEmail(data.email)) {
         error = 'email is required'
     } else if (!data.dob) {
         error = 'dob is required'

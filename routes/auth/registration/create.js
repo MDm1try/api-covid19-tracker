@@ -48,4 +48,4 @@ const create = async (req, res) => {
     }
 }
 
-module.es = create
+module.exports = create
