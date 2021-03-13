@@ -1,8 +1,8 @@
 const express = require('express')
-const update = require('./update')
+const update = require('./get')
 
 const router = express.Router()
 
-router.put('/:token', update)
+router.get('/:token', update)
 
 module.exports = router
