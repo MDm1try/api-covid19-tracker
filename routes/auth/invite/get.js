@@ -5,11 +5,10 @@ const update = async (req, res) => {
     try {
         const token = req.params.token
         const data = verifyToken(token)
-        if (!data) {
+        if (!data || !data.payload) {
             return res.status(403).send('The token is invalid')
         }
-        console.log('data', data)
-        const user = await Users.findOne({ _id: data._id })
+        const user = await Users.findOne({ _id: data.payload._id })
         if (!user) {
             return res.status(403).send('The token is invalid')
         }
