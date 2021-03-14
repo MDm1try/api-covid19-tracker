@@ -14,16 +14,14 @@ const authenticate = (type) => {
     return async (req, res, next) => {
         const authHeader = req.headers['authorization']
         const token = authHeader && authHeader.split(' ')[1]
-        console.log('token', token)
         if (!token) return res.sendStatus(401) // if there isn't any token
     
         const data = verifyToken(token)
-        console.log('data', data)
-        if (!data || !data.payload) {
+        if (!data) {
             return res.sendStatus(401) // if there isn't any token
         }
 
-        const user = await Users.findById(data.payload._id)
+        const user = await Users.findById(data._id)
         if (!user) return res.sendStatus(401)
 
         if ((type && user.type === type) || type === undefined) {
