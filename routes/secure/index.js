@@ -1,8 +1,10 @@
-const express = require('express');
-const user = require('./user');
+const express = require('express')
+const customers = require('./customers')
 
-const router = express.Router({ mergeParams: true });
+const { authenticate } = require('../utils/auth')
 
-router.use('/user', user);
+const router = express.Router({ mergeParams: true })
 
-module.exports = router;
+router.use('/customers', authenticate('admin'), customers)
+
+module.exports = router
