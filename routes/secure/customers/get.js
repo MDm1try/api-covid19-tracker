@@ -11,7 +11,7 @@ const create = async (req, res) => {
     //     dob: 1,
     //     statuses: 1
     // }
-    const users = await Users.find({ type: USER_TYPES.CUSTOMER }).populate('statuses')
+    const users = await Users.find({ type: USER_TYPES.CUSTOMER }).populate('statuses').exec()
 
     return res.status(200).send({ users }) 
 }

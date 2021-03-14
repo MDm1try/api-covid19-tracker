@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const schema = mongoose.Schema(
     {
-        userId: { type: mongoose.Schema.Types.ObjectId, required: true },
+        userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Users' },
         infected: { type: Boolean, default: false, required: true }, // red
         health: { type: Boolean, default: false, required: true }, // green
         vaccinated: { type: Boolean, default: false, required: true }, // blue
