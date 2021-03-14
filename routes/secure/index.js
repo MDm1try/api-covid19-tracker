@@ -1,7 +1,7 @@
 const express = require('express')
 const customers = require('./customers')
 
-const { authenticate } = require('../utils/auth')
+const { authenticate } = require('../../utils/auth')
 
 const router = express.Router({ mergeParams: true })
 

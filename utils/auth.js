@@ -10,8 +10,6 @@ const verifyToken = (token) => {
     return result
 }
 
-
-
 const authenticate = (type) => {
     return async (req, res, next) => {
         const authHeader = req.headers['authorization']
