@@ -9,6 +9,7 @@ const create = async (req, res) => {
         lastName: 1,
         email: 1,
         dob: 1,
+        statuses: 1
     }
     const users = await Users.find({ type: USER_TYPES.CUSTOMER }, projection).populate('statuses')
 
