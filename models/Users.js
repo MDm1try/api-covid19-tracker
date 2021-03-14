@@ -14,25 +14,19 @@ const schema = mongoose.Schema(
         },
         accepted: { type: Boolean, required: true, default: false },
         type: { type: String, required: true },
-        statuses: [{
-            type: mongoose.Schema.Types.ObjectId,
-            localField: '_id',
-            ref: 'UserStatuses',
-            foreignField: 'userId',
-            options: { sort: { createdAt: -1 }, limit: 1 }
-        }]
     },
     {
         timestamps: true,
+        toJSON: { virtuals: true } 
     },
 )
 
-// schema.virtual('statuses', {
-//     ref: 'UserStatuses',
-//     localField: '_id',
-//     foreignField: 'userId',
-//     justOne: false, // set true for one-to-one relationship
-//     options: { sort: { createdAt: -1 }, limit: 1 }
-// })
+schema.virtual('statuses', {
+    ref: 'UserStatuses',
+    localField: '_id',
+    foreignField: 'userId',
+    justOne: false, // set true for one-to-one relationship
+    options: { sort: { createdAt: -1 }, limit: 1 }
+})
 
 module.exports = mongoose.model('Users', schema)
