@@ -14,9 +14,11 @@ const authenticate = (type) => {
     return async (req, res, next) => {
         const authHeader = req.headers['authorization']
         const token = authHeader && authHeader.split(' ')[1]
+        console.log('token', token)
         if (!token) return res.sendStatus(401) // if there isn't any token
     
         const data = verifyToken(token)
+        console.log('data', data)
         if (!data || !data.payload) {
             return res.sendStatus(401) // if there isn't any token
         }
