@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt')
 
 const Users = require('../../../models/Users')
+const UserStatuses = require('../../../models/UserStatuses')
+
 const sendInvitation = require('../../../mail/sendInvitation')
 const inputRegisterUser = require('../../../validation/inputRegisterUser')
 const { USER_TYPES } = require('../../../utils/constants')
@@ -38,6 +40,8 @@ const create = async (req, res) => {
         })
 
         newUser = await newUser.save()
+        await UserStatuses.create({ userId: user._id })
+
         const payload = { _id: newUser._id }
         const token = generateAccessToken({ payload }, '100d')
         const invitationUrl = `${process.env.API_URL}/api/v1/auth/invite/${token}`
