@@ -40,7 +40,7 @@ const create = async (req, res) => {
         })
 
         newUser = await newUser.save()
-        await UserStatuses.create({ userId: user._id })
+        await UserStatuses.create({ userId: newUser._id })
 
         const payload = { _id: newUser._id }
         const token = generateAccessToken({ payload }, '100d')
