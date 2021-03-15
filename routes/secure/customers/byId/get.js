@@ -11,8 +11,9 @@ const get = async (req, res) => {
             dob: 1,
             statuses: 1
         }
+        confirm.length('id', id)
         const user = await Users.findById(id, projection).populate('statuses')
-    
+        console.log('user', user)
         if (!user) {
             return res.status(404).send({ error: 'User is not found' }) 
         }
