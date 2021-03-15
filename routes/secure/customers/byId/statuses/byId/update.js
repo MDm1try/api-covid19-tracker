@@ -2,7 +2,7 @@ const UserStatuses = require('../../../../../../models/UserStatuses')
 const inputUpdateUserStatus = require('../../../../../../validation/inputUpdateUserStatus')
 
 const update = async (req, res) => {
-    const statusId = req.query.statusId
+    const statusId = req.params.statusId
     try {
         const {
             isValid,

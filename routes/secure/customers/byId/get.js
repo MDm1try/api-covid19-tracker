@@ -1,7 +1,7 @@
 const Users = require('../../../../models/Users')
 
 const get = async (req, res) => {
-    const id = req.query.id
+    const id = req.params.id
     try {
         const projection = {
             _id: 1,
@@ -11,7 +11,7 @@ const get = async (req, res) => {
             dob: 1,
             statuses: 1
         }
-        confirm.length('id', id)
+        console.log('id', id)
         const user = await Users.findById(id, projection).populate('statuses')
         console.log('user', user)
         if (!user) {
