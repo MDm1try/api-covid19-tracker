@@ -1,10 +1,8 @@
 const express = require('express')
-const get = require('./get')
 const byId = require('./byId')
 
 const router = express.Router({ mergeParams: true })
 
-router.get('/', get)
-router.use('/:id', byId)
+router.use('/:statusId', byId)
 
 module.exports = router
