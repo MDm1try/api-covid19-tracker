@@ -2,16 +2,16 @@
 const inputUpdateUserStatus = (data) => {
     let error = ''
 
-    if (typeof data.infected !== 'boolean') {
-        error = 'infected is invalid'
-    } else if (typeof data.health !== 'boolean') {
-        error = 'health is invalid'
-    } else if (typeof data.vaccinated !== 'boolean') {
-        error = 'vaccinated is invalid'
-    } else if (typeof data.recovered !== 'boolean') {
-        error = 'recovered is invalid'
-    } else if (typeof data.risk !== 'boolean') {
-        error = 'risk is invalid'
+    if (typeof data.isInfected !== 'boolean') {
+        error = '"infected" status is invalid'
+    } else if (typeof data.isHealthy !== 'boolean') {
+        error = '"healthy" status is invalid'
+    } else if (typeof data.isVaccinated !== 'boolean') {
+        error = '"vaccinated" status is invalid'
+    } else if (typeof data.isRecovered !== 'boolean') {
+        error = '"recovered" status is invalid'
+    } else if (typeof data.isPossiblyInfected !== 'boolean') {
+        error = '"possibly infected" status is invalid'
     }
 
     return {

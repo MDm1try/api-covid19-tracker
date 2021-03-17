@@ -13,11 +13,11 @@ const update = async (req, res) => {
         }
         
         const {
-            infected,
-            health,
-            vaccinated,
-            recovered,
-            risk,
+            isInfected,
+            isHealthy,
+            isVaccinated,
+            isRecovered,
+            isPossiblyInfected,
         } = req.body
         const userStatus = await UserStatuses.findById(statusId)
 
@@ -26,11 +26,11 @@ const update = async (req, res) => {
         }
     
         await userStatus.updateOne({
-            infected,
-            health,
-            vaccinated,
-            recovered,
-            risk,
+            isInfected,
+            isHealthy,
+            isVaccinated,
+            isRecovered,
+            isPossiblyInfected,
         })
 
         return res.status(200).send({ success: true }) 
