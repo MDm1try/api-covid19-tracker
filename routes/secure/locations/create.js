@@ -9,14 +9,14 @@ const create = async (req, res) => {
         }
         const {
             name,
-            diameter,
+            radius,
             latitude,
             longitude,
         } = req.body
     
         const location = new Locations({
             name,
-            diameter,
+            radius,
             latitude,
             longitude,
         })

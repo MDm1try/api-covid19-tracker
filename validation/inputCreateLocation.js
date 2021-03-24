@@ -3,10 +3,10 @@ const inputCreateLocation = (data) => {
 
     if (!data.name) {
         error = 'name is required'
-    } else if (!data.diameter) {
-        error = 'diameter is required'
-    } else if (!(data.diameter > 0 && data.diameter <= 500)) {
-        error = 'diameter should be greater than 0 and less than 500 m'
+    } else if (!data.radius) {
+        error = 'radius is required'
+    } else if (!(data.radius > 0 && data.radius <= 500)) {
+        error = 'radius should be greater than 0 and less than 500 m'
     } else if (!data.latitude) {
         error = 'latitude is required'
     } else if (!data.longitude) {
