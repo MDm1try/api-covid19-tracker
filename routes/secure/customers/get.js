@@ -1,7 +1,7 @@
 const Users = require('../../../models/Users')
 const { USER_TYPES } = require('../../../utils/constants')
 
-const create = async (req, res) => {
+const get = async (req, res) => {
     const name = req.query.name || ''
     const projection = {
         _id: 1,
@@ -25,4 +25,4 @@ const create = async (req, res) => {
     return res.status(200).send({ users }) 
 }
 
-module.exports = create
+module.exports = get
