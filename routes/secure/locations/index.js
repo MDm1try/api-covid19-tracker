@@ -3,7 +3,7 @@ const get = require('./get')
 const create = require('./create')
 const byId = require('./byId')
 
-const { authenticate } = require('../../utils/auth')
+const { authenticate } = require('../../../utils/auth')
 
 const router = express.Router({ mergeParams: true })
 
