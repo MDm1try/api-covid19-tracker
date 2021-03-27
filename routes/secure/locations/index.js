@@ -11,6 +11,6 @@ const router = express.Router({ mergeParams: true })
 router.get('/', get)
 router.post('/', authenticate('admin'), create)
 router.use('/:id', authenticate('admin'), byId)
-router.use('/track', authenticate(), track)
+router.use('/track' , track)
 
 module.exports = router
