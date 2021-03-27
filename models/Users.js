@@ -29,4 +29,12 @@ schema.virtual('statuses', {
     options: { sort: { createdAt: -1 }, limit: 1 }
 })
 
+schema.virtual('statuses', {
+    ref: 'UserLocations',
+    localField: '_id',
+    foreignField: 'userId',
+    justOne: false, // set true for one-to-one relationship
+    options: { sort: { createdAt: -1 }, limit: 1 }
+})
+
 module.exports = mongoose.model('Users', schema)
