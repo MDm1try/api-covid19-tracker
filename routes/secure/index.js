@@ -7,6 +7,6 @@ const { authenticate } = require('../../utils/auth')
 const router = express.Router({ mergeParams: true })
 
 router.use('/customers', authenticate('admin'), customers)
-router.use('/locations', authenticate('admin'), locations)
+router.use('/locations', authenticate(), locations)
 
 module.exports = router
