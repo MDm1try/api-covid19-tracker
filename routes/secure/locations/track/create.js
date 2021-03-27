@@ -21,7 +21,7 @@ const create = async (req, res) => {
             longitude,
             timestamp,
             accuracy,
-            userId: user.id
+            userId: user._id
         })
         await userLocations.save()
 
