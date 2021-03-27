@@ -15,7 +15,7 @@ const create = async (req, res) => {
             accuracy,
         } = req.body
         const user = req.user
-        console.log('\nuser', user)
+
         const userLocations = new UserLocations({
             latitude,
             longitude,

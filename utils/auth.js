@@ -14,15 +14,15 @@ const authenticate = (type) => {
     return async (req, res, next) => {
         const authHeader = req.headers['authorization']
         const token = authHeader && authHeader.split(' ')[1]
-        if (!token) return res.sendStatus(401) // if there isn't any token
+        if (!token) return res.status(401).send({ error: 'Token not provided' }) // if there isn't any token
     
         const data = verifyToken(token)
         if (!data) {
-            return res.sendStatus(401) // if there isn't any token
+            return res.status(401).send({ error: 'Token is invalid' }) // if there isn't any token
         }
 
         const user = await Users.findById(data._id)
-        if (!user) return res.sendStatus(401)
+        if (!user) return res.status(401).send({ error: 'Token is invalid' }) 
 
         if ((type && user.type === type) || type === undefined) {
             req.user = user

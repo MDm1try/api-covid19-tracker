@@ -8,9 +8,9 @@ const { authenticate } = require('../../../utils/auth')
 
 const router = express.Router({ mergeParams: true })
 
+router.use('/track' , track)
 router.get('/', get)
 router.post('/', authenticate('admin'), create)
 router.use('/:id', authenticate('admin'), byId)
-router.use('/track' , track)
 
 module.exports = router
