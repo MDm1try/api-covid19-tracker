@@ -30,6 +30,7 @@ const create = async (req, res) => {
             jwtToken, 
             firstName: user.firstName,
             lastName: user.lastName,
+            email: user.email,
             dob: user.dob,
             type: user.type
         }) 
