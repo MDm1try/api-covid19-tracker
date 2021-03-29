@@ -33,4 +33,4 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     app.listen(process.env.PORT, () => {
         console.log('listening on ' + process.env.PORT)
     })
-})
+}).catch(err => console.log(err.reason))

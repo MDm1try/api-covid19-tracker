@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const { USER_TYPES } = require('../utils/constants')
+
 
 const schema = mongoose.Schema(
     {
@@ -13,7 +15,7 @@ const schema = mongoose.Schema(
             default: true,
         },
         accepted: { type: Boolean, required: true, default: false },
-        type: { type: String, required: true },
+        type: { type: String, required: true, enum: Object.values(USER_TYPES) },
     },
     {
         timestamps: true,
@@ -29,12 +31,20 @@ schema.virtual('statuses', {
     options: { sort: { createdAt: -1 }, limit: 1 }
 })
 
-schema.virtual('statuses', {
+schema.virtual('locations', {
     ref: 'UserLocations',
     localField: '_id',
     foreignField: 'userId',
     justOne: false, // set true for one-to-one relationship
-    options: { sort: { createdAt: -1 }, limit: 1 }
+    options: { sort: { createdAt: -1 } }
+})
+
+schema.virtual('notifications', {
+    ref: 'Notifications',
+    localField: '_id',
+    foreignField: 'toUser',
+    justOne: false, // set true for one-to-one relationship
+    options: { sort: { createdAt: -1 } }
 })
 
 module.exports = mongoose.model('Users', schema)
