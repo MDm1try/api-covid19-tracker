@@ -21,13 +21,13 @@ const findСustomersInInfectedPlaces = async (from) => {
 
             const duration = moment.duration(moment(userLocationTimestamp).diff(locationTimestamp))
             const hours = Math.abs(duration.asHours())
-
+            const milliseconds = Math.abs(duration.asMilliseconds())
             if (location.radius >= dist && COVID_SURVIVE_HOURS >= hours) {
                 const userId = userLocation.userId
                 if (result[userId]) {
                     result[userId].locationNames = [...result[userId].locationNames, {
                         name: location.name,
-                        hoursAfter: hours
+                        timeAfter: moment.utc(milliseconds).format('HH:mm')                        ,
                     }]
                     
                 } else {
@@ -35,7 +35,7 @@ const findСustomersInInfectedPlaces = async (from) => {
                         userId: userLocation.userId,
                         locationNames: [{
                             name: location.name,
-                            hoursAfter: hours
+                            timeAfter: moment.utc(milliseconds).format('HH:mm')                        ,
                         }],
                     }
                 }

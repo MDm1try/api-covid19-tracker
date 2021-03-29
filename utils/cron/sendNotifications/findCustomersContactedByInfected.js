@@ -40,8 +40,8 @@ const findCustomersContactedByInfected = async (from) => {
                 const dist = getDistanceFromLatLonInMeters(healthyCustomerLocation.latitude, healthyCustomerLocation.longitude, infectedCustomerLocation.latitude, infectedCustomerLocation.longitude)
                 const duration = moment.duration(moment(healthyCustomerLocation.timestamp).diff(infectedCustomerLocation.timestamp))
                 const minutes = Math.abs(duration.asMinutes())
-               
-                if (MAX_DIST_PATHOGEN_BEARING_TRAVEL_DURING_SNEEZES_M >= dist && 1 >= minutes ) {
+
+                if (MAX_DIST_PATHOGEN_BEARING_TRAVEL_DURING_SNEEZES_M >= dist && 10 >= minutes ) {
                     const userId = healthyCustomerLocation.userId
                     if (result[userId]) {
                         result[userId].numberOfContacts++

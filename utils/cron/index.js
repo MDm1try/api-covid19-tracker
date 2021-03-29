@@ -2,26 +2,29 @@ require('dotenv').config()
 
 const cron = require('node-cron')
 const mongoose = require('mongoose')
+const moment = require('moment')
 
 const sendNotifications = require('./sendNotifications')
 
-// cron.schedule('* * * * *', () => {
-console.log('\n running a task every two minuteste')
-    
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(async () => {
-        console.log('Connected')
-        await sendNotifications()
+cron.schedule('*/10 * * * *', () => {
+    console.log('\n running a task every 10 minute')
 
-        console.log('close connection')
-        await mongoose.connection.close()
+    const fromDate = moment(new Date()).subtract(10, 'minutes').utc().toISOString()
 
-    })
-    .catch(err => {
-        console.error('error', err)
-        mongoose.connection.close()
-    })
-// })
+    mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+        .then(async () => {
+            console.log('Connected', fromDate)
+            await sendNotifications(fromDate)
+
+            console.log('close connection')
+            await mongoose.connection.close()
+
+        })
+        .catch(err => {
+            console.error('error', err)
+            mongoose.connection.close()
+        })
+})
 
 
 
