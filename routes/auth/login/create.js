@@ -32,7 +32,8 @@ const create = async (req, res) => {
             lastName: user.lastName,
             email: user.email,
             dob: user.dob,
-            type: user.type
+            type: user.type,
+            _id: user.user
         }) 
     } catch(err) {
         return res.status(500).send({ error: err.message })

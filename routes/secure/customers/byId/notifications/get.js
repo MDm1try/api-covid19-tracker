@@ -7,7 +7,9 @@ const get = async (req, res) => {
         if (!notifications) {
             return res.status(404).send({ error: 'Notifications not found' }) 
         }
-        return res.status(200).send(notifications) 
+        const unseenNotifications = await Notifications.countDocuments({ toUser: id, seen: false })
+
+        return res.status(200).send({ notifications, unseenNotifications }) 
     } catch(err) {
         return res.status(500).send({ error: err.message }) 
     }

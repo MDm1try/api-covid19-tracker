@@ -5,7 +5,8 @@ const schema = mongoose.Schema(
     {
         toUser: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Users' },
         message: { type: String, default: '', required: true },
-        status: { type: String, default: '', required: true, enum: Object.values(NOTIFICATION_STATUSES) }
+        status: { type: String, default: '', required: true, enum: Object.values(NOTIFICATION_STATUSES) },
+        seen: { type: Boolean, default: false, required: true },
     },
     {
         timestamps: true,

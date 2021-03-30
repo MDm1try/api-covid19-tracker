@@ -7,7 +7,7 @@ const { COVID_SURVIVE_HOURS } = require('../../constants')
 const { getDistanceFromLatLonInMeters } = require('../../geometry')
 
 const findСustomersInInfectedPlaces = async (from) => {
-    const dateQuery = from ? { createdAt: { $gte: { $date: from } } } : {}
+    const dateQuery = from ? { createdAt: { $gte: from } } : {}
 
     const result = {} 
 

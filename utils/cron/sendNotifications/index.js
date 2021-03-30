@@ -21,7 +21,7 @@ const sendsendNotifications = async (from) => {
     for(const customer of customersContactedByInfected) {
         const qty = customer.numberOfContacts
         await Notifications.create({
-            userId: customer.userId,
+            toUser: customer.userId,
             message: `You have been close to ${qty > 1 ? `${qty} persons` : 'a person'} infected with COVID-19`,
             status: qty > 1 ? NOTIFICATION_STATUSES.MAJOR : NOTIFICATION_STATUSES.MEDIUM
         })

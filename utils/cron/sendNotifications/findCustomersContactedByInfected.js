@@ -10,7 +10,7 @@ const { getDistanceFromLatLonInMeters } = require('../../geometry')
 const findCustomersContactedByInfected = async (from) => {
     const result = {} 
     
-    const dateQuery = from ? { createdAt: { $gte: { $date: from } } } : {}
+    const dateQuery = from ? { createdAt: { $gte: from } } : {}
 
     const customers = await Users.find({ type: USER_TYPES.CUSTOMER })
     const infectedCustomers = []
