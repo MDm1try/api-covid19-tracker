@@ -10,10 +10,10 @@ const sendsendNotifications = async (from) => {
     console.log('customersContactedByInfected', customersContactedByInfected.length)
 
     for(const customer of customersInInfectedPlaces) {
-        const locationNames = customer.locationNames
-        await Promise.all(locationNames.map(locationName => Notifications.create({
+        const locations = customer.locations
+        await Promise.all(locations.map(location => Notifications.create({
             toUser: customer.userId,
-            message: `You have visited "${locationName}" place ${customer.timeAfter} hour(s) ago where people got infected with COVID-19.`,
+            message: `You have visited "${location.name}" place ${location.timeAfter} hour(s) ago where people got infected with COVID-19.`,
             status: NOTIFICATION_STATUSES.MINOR
         })))
     }
