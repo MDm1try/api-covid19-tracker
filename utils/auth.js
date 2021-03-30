@@ -27,6 +27,8 @@ const authenticate = (type) => {
         if ((type && user.type === type) || type === undefined) {
             req.user = user
             next() // pass the execution off to whatever request the client intended
+        } else {
+            return res.status(403).send({ error: 'You do not have permission for this' }) 
         }
     }
 }
