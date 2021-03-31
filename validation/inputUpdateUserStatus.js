@@ -12,6 +12,8 @@ const inputUpdateUserStatus = (data) => {
         error = '"recovered" status is invalid'
     } else if (typeof data.isPossiblyInfected !== 'boolean') {
         error = '"possibly infected" status is invalid'
+    } else if (typeof data.hours !== 'number') {
+        error = 'hours is invalid'
     }
 
     return {

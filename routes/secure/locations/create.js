@@ -21,6 +21,7 @@ const create = async (req, res) => {
             longitude,
         })
         await location.save()
+        
         return res.status(200).send({ success: true })
     } catch (err) {
         return res.status(500).send({ error: err.message })
