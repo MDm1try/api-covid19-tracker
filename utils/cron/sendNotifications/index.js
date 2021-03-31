@@ -13,7 +13,7 @@ const sendsendNotifications = async (from) => {
         const locations = customer.locations
         await Promise.all(locations.map(location => Notifications.create({
             toUser: customer.userId,
-            message: `You have visited "${location.name}" place ${location.timeAfter} hour(s) ago where people got infected with COVID-19.`,
+            message: `You have visited "${location.name}" place at ${location.timeAfter}. There, people became infected with COVID-19.`,
             status: NOTIFICATION_STATUSES.MINOR
         })))
     }
