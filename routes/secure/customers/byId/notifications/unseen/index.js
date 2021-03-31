@@ -1,12 +1,8 @@
 const express = require('express')
 const get = require('./get')
-const byId = require('./byId')
-const unseen = require('./unseen')
 
 const router = express.Router({ mergeParams: true })
 
 router.get('/', get)
-router.use('/:notificationId', byId)
-router.use('/unseen', unseen)
 
 module.exports = router
