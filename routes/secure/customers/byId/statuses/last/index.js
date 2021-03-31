@@ -1,8 +1,8 @@
 const express = require('express')
-const update = require('./update')
+const get = require('./get')
 
 const router = express.Router({ mergeParams: true })
 
-router.put('/', update)
+router.get('/', get)
 
 module.exports = router
