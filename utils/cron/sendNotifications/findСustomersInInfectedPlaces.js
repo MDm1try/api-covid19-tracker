@@ -27,7 +27,7 @@ const findСustomersInInfectedPlaces = async (from) => {
                 if (result[userId]) {
                     result[userId].locations = [...result[userId].locations, {
                         name: location.name,
-                        timeAfter: moment.utc(milliseconds).format('HH:mm')                        ,
+                        timeAfter: moment.utc(milliseconds).zone(+2).format('HH:mm')
                     }]
                     
                 } else {
@@ -35,7 +35,7 @@ const findСustomersInInfectedPlaces = async (from) => {
                         userId: userLocation.userId,
                         locations: [{
                             name: location.name,
-                            timeAfter: moment.utc(milliseconds).format('HH:mm')                        ,
+                            timeAfter: moment.utc(milliseconds).zone(+2).format('HH:mm')
                         }],
                     }
                 }
