@@ -1,7 +1,7 @@
 const UserStatuses = require('../../../../../../models/UserStatuses')
 
 const get = async (req, res) => {
-    const id = req.params.statusId
+    const id = req.params.id
     try {
         const lastUserStatus = await UserStatuses.findOne({ userId: id }, null, { sort: { createdAt: -1 } })
 
