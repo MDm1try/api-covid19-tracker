@@ -6,6 +6,7 @@ const get = async (req, res) => {
         const unseenNotifications = await Notifications.countDocuments({ toUser: id, seen: false })
         return res.status(200).send(unseenNotifications) 
     } catch(err) {
+        console.error(err)
         return res.status(500).send({ error: err.message }) 
     }
 }
