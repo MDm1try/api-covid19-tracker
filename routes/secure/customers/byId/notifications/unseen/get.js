@@ -1,4 +1,4 @@
-const Notifications = require('../../../../../models/Notifications')
+const Notifications = require('../../../../../../models/Notifications')
 
 const get = async (req, res) => {
     const id = req.params.id
