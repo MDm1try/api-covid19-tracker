@@ -92,12 +92,13 @@ const update = async (req, res) => {
                 message: `You have been close to ${qty > 1 ? `${qty} persons` : 'a person'} infected with COVID-19`,
                 status: qty > 1 ? NOTIFICATION_STATUSES.MAJOR : NOTIFICATION_STATUSES.MEDIUM
             })
+            console.info('created notification for', customer)
         }
 
         return res.status(200).send({ success: true }) 
     } catch (err) {
+        console.error(err)
         return res.status(500).send({ error: err.message }) 
-
     }
 }
 
