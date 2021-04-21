@@ -15,10 +15,12 @@ const get = async (req, res) => {
         countPossiblyInfectedCustomers: 0,
         countLocations
     }
+    console.log('users', users)
+    for (const user of user._id) {
+        console.log('users', users)
 
-    for (const user of users) {
         const lastStatus = await UserStatuses.findOne({ userId: user._id }, null, { sort: { createdAt: -1 } })
-
+        console.log('lastStatus', lastStatus)
         if (lastStatus) {
             if (lastStatus.isInfected) {
                 stat.countInfectedCustomers++
