@@ -22,13 +22,17 @@ const get = async (req, res) => {
         if (lastStatus) {
             if (lastStatus.isInfected) {
                 stat.countInfectedCustomers++
-            } else if (lastStatus.isHealthy) {
+            } 
+            if (lastStatus.isHealthy) {
                 stat.countHealthyCustomers++
-            } else if (lastStatus.isVaccinated) {
+            } 
+            if (lastStatus.isVaccinated) {
                 stat.countVaccinatedCustomers++
-            } else if (lastStatus.isRecovered) {
+            } 
+            if (lastStatus.isRecovered) {
                 stat.countRecoveredCustomers++
-            } else if (lastStatus.isPossiblyInfected) {
+            } 
+            if (lastStatus.isPossiblyInfected) {
                 stat.countPossiblyInfectedCustomers++
             } 
         }
