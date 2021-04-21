@@ -17,7 +17,7 @@ const get = async (req, res) => {
             countLocations
         }
         console.log('users', users)
-        for (const user of user._id) {
+        for (const user of users) {
             console.log('user', user)
     
             const lastStatus = await UserStatuses.findOne({ userId: user._id }, null, { sort: { createdAt: -1 } })
