@@ -19,17 +19,19 @@ const get = async (req, res) => {
     for (const user in users) {
         const lastStatus = await UserStatuses.findOne({ userId: user._id }, null, { sort: { createdAt: -1 } })
 
-        if (lastStatus.isInfected) {
-            stat.countInfectedPlaces++
-        } else if (lastStatus.isHealthy) {
-            stat.countHealthyPlaces++
-        } else if (lastStatus.isVaccinated) {
-            stat.countVaccinatedPlaces++
-        } else if (lastStatus.isRecovered) {
-            stat.countRecoveredPlaces++
-        } else if (lastStatus.isPossiblyInfected) {
-            stat.countPossiblyInfectedPlaces++
-        } 
+        if (lastStatus) {
+            if (lastStatus.isInfected) {
+                stat.countInfectedPlaces++
+            } else if (lastStatus.isHealthy) {
+                stat.countHealthyPlaces++
+            } else if (lastStatus.isVaccinated) {
+                stat.countVaccinatedPlaces++
+            } else if (lastStatus.isRecovered) {
+                stat.countRecoveredPlaces++
+            } else if (lastStatus.isPossiblyInfected) {
+                stat.countPossiblyInfectedPlaces++
+            } 
+        }
     }
 
     return res.status(200).send(stat) 
