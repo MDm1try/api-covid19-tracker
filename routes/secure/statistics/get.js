@@ -8,11 +8,11 @@ const get = async (req, res) => {
     const users = await Users.find({ role: USER_TYPES.ADMIN })
 
     const stat = {
-        countInfectedPlaces: 0,
-        countHealthyPlaces: 0,
-        countVaccinatedPlaces: 0,
-        countRecoveredPlaces: 0,
-        countPossiblyInfectedPlaces: 0,
+        countInfectedCustomers: 0,
+        countHealthyCustomers: 0,
+        countVaccinatedCustomers: 0,
+        countRecoveredCustomers: 0,
+        countPossiblyInfectedCustomers: 0,
         countLocations
     }
 
@@ -21,15 +21,15 @@ const get = async (req, res) => {
 
         if (lastStatus) {
             if (lastStatus.isInfected) {
-                stat.countInfectedPlaces++
+                stat.countInfectedCustomers++
             } else if (lastStatus.isHealthy) {
-                stat.countHealthyPlaces++
+                stat.countHealthyCustomers++
             } else if (lastStatus.isVaccinated) {
-                stat.countVaccinatedPlaces++
+                stat.countVaccinatedCustomers++
             } else if (lastStatus.isRecovered) {
-                stat.countRecoveredPlaces++
+                stat.countRecoveredCustomers++
             } else if (lastStatus.isPossiblyInfected) {
-                stat.countPossiblyInfectedPlaces++
+                stat.countPossiblyInfectedCustomers++
             } 
         }
     }
