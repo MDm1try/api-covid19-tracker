@@ -15,6 +15,7 @@ const create = async (req, res) => {
         } = req.body
     
         const location = new Locations({
+            userId: req.user._id,
             name,
             radius,
             latitude,
