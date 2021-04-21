@@ -5,7 +5,7 @@ const { USER_TYPES } = require('../../../utils/constants')
 
 const get = async (req, res) => {
     const countLocations = await Locations.countDocuments()
-    const users = await Users.find({ role: USER_TYPES.ADMIN })
+    const users = await Users.find({ role: USER_TYPES.CUSTOMER })
 
     const stat = {
         countInfectedCustomers: 0,
